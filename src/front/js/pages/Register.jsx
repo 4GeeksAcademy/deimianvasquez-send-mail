@@ -1,13 +1,14 @@
 import React, { useState, useContext } from "react"
-import { Context } from "../store/appContext"
 import { Link } from "react-router-dom"
+import { Context } from "../store/appContext"
 
 const initialState = {
+    lastname: "",
     email: "",
     password: ""
 }
 
-const Login = () => {
+const Register = () => {
     const { actions } = useContext(Context)
 
     const [user, setUser] = useState(initialState)
@@ -19,19 +20,31 @@ const Login = () => {
         })
     }
 
+
     const handleSubmit = (event) => {
         event.preventDefault()
-        actions.login(user)
+        actions.saveUser(user)
     }
-
 
     return (
         <>
             <div className="container mt-5">
                 <div className="row justify-content-center">
-                    <h2 className="text-center my-3">Ingresar a plataforma</h2>
+                    <h2 className="text-center my-3">Registrarse en la plataforma</h2>
                     <div className="col-12 col-md-6 border py-4">
                         <form onSubmit={handleSubmit}>
+                            <div className="form-group mb-3">
+                                <label>Nombre completo:</label>
+                                <input
+                                    type="text"
+                                    placeholder="Jhon Doe"
+                                    className="form-control"
+                                    name="lastname"
+                                    value={user.lastname}
+                                    onChange={handleChange}
+                                />
+                            </div>
+
                             <div className="form-group mb-3">
                                 <label>Email:</label>
                                 <input
@@ -55,15 +68,15 @@ const Login = () => {
                                     onChange={handleChange}
                                 />
                             </div>
-                            <button className=" btn btn-outline-primary w-100">Iniciar sesión</button>
+                            <button className=" btn btn-outline-primary w-100">Registrarse</button>
                         </form>
 
                     </div>
                     <div className="w-100"></div>
 
                     <div className="col-12 col-md-6 d-flex justify-content-between my-1">
-                        <Link to={`/register`}>Registrarme</Link>
-                        <Link to={`/recuperar-contrasenia`}>Olvido su contraseña</Link>
+                        <Link to={`/login`}>Estoy registrado</Link>
+                        {/* <Link to={`/reset-password`}>Olvido su contraseña</Link> */}
                     </div>
                 </div>
             </div>
@@ -72,4 +85,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default Register

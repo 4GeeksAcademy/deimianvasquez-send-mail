@@ -4,12 +4,14 @@ import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
 
 import { Home } from "./pages/home";
-import Register from "./component/Register.jsx";
+import Register from "./pages/Register.jsx";
 // import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
+import Login from "./component/Login.jsx";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
+import ResetPass from "./pages/ResetPass.jsx";
 
 //create your first component
 const Layout = () => {
@@ -27,6 +29,8 @@ const Layout = () => {
                     <Routes>
                         <Route element={<Home />} path="/" />
                         <Route element={<Register />} path="/register" />
+                        <Route element={<Login />} path="/login" />
+                        <Route element={<ResetPass />} path="/recuperar-contrasenia" />
                         {/* <Route element={<Single />} path="/single/:theid" /> */}
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
