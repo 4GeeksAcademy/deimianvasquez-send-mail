@@ -10,10 +10,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				try {
 					let response = await fetch(`${process.env.BACKEND_URL}/register`, {
 						method: "POST",
-						headers: {
-							"Content-Type": "application/json"
-						},
-						body: JSON.stringify(user)
+						body: user
 					})
 
 					console.log(response)

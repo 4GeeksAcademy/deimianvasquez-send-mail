@@ -5,7 +5,8 @@ import { Context } from "../store/appContext"
 const initialState = {
     lastname: "",
     email: "",
-    password: ""
+    password: "",
+    avatar: ""
 }
 
 const Register = () => {
@@ -22,8 +23,18 @@ const Register = () => {
 
 
     const handleSubmit = (event) => {
+
         event.preventDefault()
-        actions.saveUser(user)
+
+        const formData = new FormData();
+
+        formData.append("lastname", user.lastname)
+        formData.append("email", user.email)
+        formData.append("password", user.password)
+        formData.append("avatar", user.avatar)
+
+
+        actions.saveUser(formData)
     }
 
     return (
@@ -54,6 +65,20 @@ const Register = () => {
                                     name="email"
                                     value={user.email}
                                     onChange={handleChange}
+                                />
+                            </div>
+
+                            <div className="form-group mb-3">
+                                <label>Avatar:</label>
+                                <input
+                                    type="file"
+                                    placeholder="selected avatar"
+                                    className="form-control"
+                                    name="avatar"
+                                    // value={user.email}
+                                    onChange={(event) => {
+                                        setUser({ ...user, avatar: event.target.files[0] })
+                                    }}
                                 />
                             </div>
 
